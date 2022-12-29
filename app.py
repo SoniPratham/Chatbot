@@ -5,7 +5,7 @@ from os import link
 from urllib import response
 from flask import Flask, render_template,request,jsonify
 
-from chat import get_response
+# from chat import get_response
 
 from sqlconnect import get_answer
 from chat import get_link
@@ -50,14 +50,14 @@ def index_get():
 def perdict():
     text = request.get_json().get("message")
     text.strip()
-    if re.match(r"[A-Z0-9]{3}IT\d{3}", text) or re.match(r"[0-9]{2}IT\d{3}", text):
-        response =get_answer(text)
-        message = {"answer" : "Enter Proper or valid En-Roll number"}
-        if response:
-            message = {"answer" : response,"link": ""}
-        else:
-            message = {"answer" : "Enter Proper or valid En-Roll number","link": ""}
-        return  jsonify(message)
+#     if re.match(r"[A-Z0-9]{3}IT\d{3}", text) or re.match(r"[0-9]{2}IT\d{3}", text):
+#         response =get_answer(text)
+#         message = {"answer" : "Enter Proper or valid En-Roll number"}
+#         if response:
+#             message = {"answer" : response,"link": ""}
+#         else:
+#             message = {"answer" : "Enter Proper or valid En-Roll number","link": ""}
+#         return  jsonify(message)
     response =get_response(text)
     link=get_link()
     message = {"answer" : response,"link": link}
